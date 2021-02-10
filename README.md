@@ -1,9 +1,10 @@
-# Fabric Example Mod
+# Enhanced Attack Indicator
 
-## Setup
+Enhanced Attack Indicator is a mod for Minecraft 1.16.x that shows the attack indicator progress on more actions. Fabric Loader and Fabric API are required.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+Added actions include:
 
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+* Breaking blocks
+* Bows, crossbow, trident drawing
+* Eating foods
+* Items with a cooldown (chorus fruit, enderpearls).
