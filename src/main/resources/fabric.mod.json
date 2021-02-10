@@ -1,21 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "enhanced-attack-indicator",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Enhanced Attack Indicator",
+  "description": "Uses the attack indicator for more than just melee attacks",
   "authors": [
-    "Me!"
+    "Minenash"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://github.com/Minenash/Enhanced-Attack-Indicator",
+    "sources": "https://github.com/Minenash/Enhanced-Attack-Indicator",
+    "issues": "https://github.com/Minenash/Enhanced-Attack-Indicator/issues"
   },
 
   "license": "CC0-1.0",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "net.fabricmc.example.EnhancedAttackIndicator"
