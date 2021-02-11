@@ -9,4 +9,7 @@ public class Config extends TinyConfig{
     @Entry public static boolean showRangeWeaponDraw = true;
     @Entry public static boolean showItemCooldowns = true;
 
+    @Entry public static boolean disablePickaxesAndShovels = true;
+    @Entry public static boolean disableAxes = true;
+
 }

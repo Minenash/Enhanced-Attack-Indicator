@@ -8,6 +8,9 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class EnhancedAttackIndicator implements ClientModInitializer {
 
 	@Override
@@ -17,8 +20,12 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 
 	public static float getProgress(float weaponProgress) {
 
+		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		ItemStack mainHand = player.getMainHandStack();
+		ItemStack offHand = player.getOffHandStack();
+
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.FIRST && weaponProgress < 1.0F)
-			return weaponProgress;
+			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		if (Config.showBlockBreaking) {
 			float breakingProgress = ((ClientPlayerInteractionManagerAccessor) MinecraftClient.getInstance().interactionManager).getCurrentBreakingProgress();
@@ -26,8 +33,6 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			if (breakingProgress > 0)
 				return breakingProgress;
 		}
-
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
 
 		if (Config.showRangeWeaponDraw) {
 			ItemStack stack = player.getActiveItem();
@@ -52,10 +57,7 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 		}
 
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.MIDDLE && weaponProgress < 1.0F)
-			return weaponProgress;
-
-		ItemStack mainHand = player.getMainHandStack();
-		ItemStack offHand = player.getOffHandStack();
+			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		if (Config.showItemCooldowns) {
 			float cooldown = player.getItemCooldownManager().getCooldownProgress(offHand.getItem(), 0);
@@ -72,9 +74,18 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			return 2.0F;
 
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.LAST)
-			return weaponProgress;
+			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		return 1.0F;
+
+	}
+
+	private static float weaponCooldown(Item item, float weaponProgress) {
+		if (Config.disablePickaxesAndShovels && (item.getTranslationKey().contains("pickaxe") || item.getTranslationKey().contains("shovel")))
+			return 1.0F;
+		if (Config.disableAxes && item.getTranslationKey().contains("axe") && !item.getTranslationKey().contains("pickaxe"))
+			return 1.0F;
+		return weaponProgress;
 
 	}
 
