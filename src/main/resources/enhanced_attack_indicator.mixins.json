@@ -1,15 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.fabricmc.example.mixin",
+  "package": "com.minenash.enhanced_attack_indicator.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "InGameHudMixin"
+    "InGameHudMixin",
+    "ClientPlayerInteractionManagerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "mixins": [
-    "ClientPlayerInteractionManagerAccessor"
-  ]
+  }
 }

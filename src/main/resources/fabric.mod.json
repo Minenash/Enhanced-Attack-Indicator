@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "enhanced_attack_indicator",
   "version": "${version}",
 
   "name": "Example Mod",
@@ -13,16 +13,15 @@
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
 
-  "license": "CC0-1.0",
+  "license": "MIT",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
-      "net.fabricmc.example.EnhancedAttackIndicator"
-    ]
+    "client": [ "com.minenash.enhanced_attack_indicator.EnhancedAttackIndicator" ],
+    "modmenu": [ "com.minenash.enhanced_attack_indicator.config.Config" ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "enhanced_attack_indicator.mixins.json"
   ],
 
   "depends": {
