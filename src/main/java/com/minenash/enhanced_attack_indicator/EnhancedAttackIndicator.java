@@ -1,15 +1,11 @@
 package com.minenash.enhanced_attack_indicator;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.ModInitializer;
 import com.minenash.enhanced_attack_indicator.config.Config;
 import com.minenash.enhanced_attack_indicator.mixin.ClientPlayerInteractionManagerAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.*;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class EnhancedAttackIndicator implements ClientModInitializer {
 
