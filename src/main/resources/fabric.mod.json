@@ -19,7 +19,7 @@
   "environment": "client",
   "entrypoints": {
     "client": [ "com.minenash.enhanced_attack_indicator.EnhancedAttackIndicator" ],
-    "modmenu": [ "com.minenash.enhanced_attack_indicator.config.Config" ]
+    "modmenu": [ "com.minenash.enhanced_attack_indicator.config.ModMenuEntryPoint" ]
   },
   "mixins": [
     "enhanced_attack_indicator.mixins.json"

@@ -2,8 +2,6 @@ package com.minenash.enhanced_attack_indicator.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import io.github.prospector.modmenu.api.ConfigScreenFactory;
-import io.github.prospector.modmenu.api.ModMenuApi;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -28,7 +26,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
-public class TinyConfig implements ModMenuApi {
+public class TinyConfig {
 
     private static final Pattern INTEGER_ONLY = Pattern.compile("(-?[0-9]*)");
     private static final Pattern DECIMAL_ONLY = Pattern.compile("-?([\\d]+\\.?[\\d]*|[\\d]*\\.?[\\d]+|\\.)");
@@ -172,6 +170,10 @@ public class TinyConfig implements ModMenuApi {
 
     }
 
+    public static Screen getModConfigScreen(Screen parent) {
+        return new TinyConfigScreen(parent);
+    }
+
     private static class TinyConfigScreen extends Screen {
         protected TinyConfigScreen(Screen parent) {
             super(new TranslatableText(TinyConfig.translationPrefix + "title"));
@@ -250,16 +252,6 @@ public class TinyConfig implements ModMenuApi {
                 y += 30;
             }
         }
-    }
-
-    @Override
-    public String getModId() {
-        return "seamless_loading_screen";
-    }
-
-    @Override
-    public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return TinyConfigScreen::new;
     }
 
     @Retention(RetentionPolicy.RUNTIME)
