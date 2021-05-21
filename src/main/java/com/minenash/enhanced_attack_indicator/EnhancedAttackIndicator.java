@@ -5,7 +5,12 @@ import com.minenash.enhanced_attack_indicator.config.Config;
 import com.minenash.enhanced_attack_indicator.mixin.ClientPlayerInteractionManagerAccessor;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.*;
+
+import java.util.Iterator;
 
 public class EnhancedAttackIndicator implements ClientModInitializer {
 
@@ -23,9 +28,8 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.FIRST && weaponProgress < 1.0F)
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
-		if (Config.showBlockBreaking) {
+		if (showMiningCooldown(mainHand.getItem())) {
 			float breakingProgress = ((ClientPlayerInteractionManagerAccessor) MinecraftClient.getInstance().interactionManager).getCurrentBreakingProgress();
-
 			if (breakingProgress > 0)
 				return breakingProgress;
 		}
@@ -55,7 +59,7 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.MIDDLE && weaponProgress < 1.0F)
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
-		if (Config.showItemCooldowns) {
+		if (Config.showSpecialItemCooldowns) {
 			float cooldown = player.getItemCooldownManager().getCooldownProgress(offHand.getItem(), 0);
 			if (cooldown != 0.0F)
 				return cooldown;
@@ -77,12 +81,21 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 	}
 
 	private static float weaponCooldown(Item item, float weaponProgress) {
-		if (Config.disablePickaxesAndShovels && (item.getTranslationKey().contains("pickaxe") || item.getTranslationKey().contains("shovel")))
+		if (!Config.pickaxeAndShovelCooldown.attack && (item.getTranslationKey().contains("pickaxe") || item.getTranslationKey().contains("shovel")))
 			return 1.0F;
-		if (Config.disableAxes && item.getTranslationKey().contains("axe") && !item.getTranslationKey().contains("pickaxe"))
+		if (!Config.axeCooldown.attack && item.getTranslationKey().contains("axe") && !item.getTranslationKey().contains("pickaxe"))
+			return 1.0F;
+		if (!Config.noCooldownItemsCooldown.attack && !item.getAttributeModifiers(EquipmentSlot.MAINHAND).get(EntityAttributes.GENERIC_ATTACK_SPEED).iterator().hasNext())
 			return 1.0F;
 		return weaponProgress;
-
 	}
+
+	private static boolean showMiningCooldown(Item item) {
+		return (Config.pickaxeAndShovelCooldown.mine && (item.getTranslationKey().contains("pickaxe") || item.getTranslationKey().contains("shovel")))
+			|| (Config.axeCooldown.mine && item.getTranslationKey().contains("axe") && !item.getTranslationKey().contains("pickaxe"))
+			|| (Config.noCooldownItemsCooldown.mine && !item.getAttributeModifiers(EquipmentSlot.MAINHAND).get(EntityAttributes.GENERIC_ATTACK_SPEED).iterator().hasNext());
+	}
+
+
 
 }
