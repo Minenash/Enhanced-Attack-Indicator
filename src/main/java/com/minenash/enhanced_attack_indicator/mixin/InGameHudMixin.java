@@ -31,4 +31,10 @@ public class InGameHudMixin {
 		renderFullness = false;
 		return render;
 	}
+
+	@Redirect(method = "renderHotbar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getAttackCooldownProgress(F)F"))
+	private float setHotBarProgress(ClientPlayerEntity player, float baseTime) {
+		float progress = EnhancedAttackIndicator.getProgress(player.getAttackCooldownProgress(baseTime));
+		return progress == 2.0F ? 0.99F : progress;
+	}
 }

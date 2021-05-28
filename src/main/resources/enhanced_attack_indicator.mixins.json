@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.minenash.enhanced_attack_indicator.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_16",
   "client": [
     "InGameHudMixin",
     "ClientPlayerInteractionManagerAccessor"
