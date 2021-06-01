@@ -3,30 +3,15 @@ package com.minenash.enhanced_attack_indicator;
 import net.fabricmc.api.ClientModInitializer;
 import com.minenash.enhanced_attack_indicator.config.Config;
 import com.minenash.enhanced_attack_indicator.mixin.ClientPlayerInteractionManagerAccessor;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
 import net.minecraft.item.*;
-import org.lwjgl.glfw.GLFW;
 
 public class EnhancedAttackIndicator implements ClientModInitializer {
-
-	public static final KeyBinding OPEN_SETTINGS = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-			"seamless_loading_screen.keybind.config",
-			InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G,
-			"key.categories.misc"));
 
 	@Override
 	public void onInitializeClient() {
 		Config.init("enhanced_attack_indicator", Config.class);
-
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			while (OPEN_SETTINGS.wasPressed())
-				client.openScreen(Config.getModConfigScreen(client.currentScreen));
-		});
 	}
 
 	public static float getProgress(float weaponProgress) {
