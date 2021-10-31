@@ -65,8 +65,8 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 				return cooldown;
 		}
 
-		if (Config.showRangeWeaponDraw && (mainHand.getItem() == Items.CROSSBOW && mainHand.getTag().getBoolean("Charged")
-		                                 || offHand.getItem() == Items.CROSSBOW && offHand.getTag().getBoolean("Charged")))
+		if (Config.showRangeWeaponDraw && (mainHand.getItem() == Items.CROSSBOW && mainHand.getNbt().getBoolean("Charged")
+		                                 || offHand.getItem() == Items.CROSSBOW && offHand.getNbt().getBoolean("Charged")))
 			return 2.0F;
 
 		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.LAST)

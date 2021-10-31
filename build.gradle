@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.9-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -34,6 +34,20 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 }
 
+if (project.databreaker_enabled) {
+    repositories {
+        maven { url = "https://maven.gegy.dev" }
+    }
+
+    dependencies {
+        // DataBreaker applies a number of patches to eliminate the loading of data fixers
+        // This greatly reduces the amount of time needed to start the game, but is generally unsafe in production
+        modRuntime ("supercoder79:databreaker:${project.databreaker_version}") {
+            transitive = false
+        }
+    }
+}
+
 processResources {
 	inputs.property "version", project.version
 
@@ -48,9 +62,6 @@ tasks.withType(JavaCompile).configureEach {
 	// see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
 	// If Javadoc is generated, this must be specified in that task too.
 	it.options.encoding = "UTF-8"
-
-	// Minecraft 1.17 (21w19a) upwards uses Java 16.
-	it.options.release = 16
 }
 
 java {
