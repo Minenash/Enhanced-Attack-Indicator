@@ -1,13 +1,14 @@
 {
-  "enhanced_attack_indicator.tinyconfig.title": "Enhanced Attack Indicator",
-  "enhanced_attack_indicator.tinyconfig.showBlockBreaking": "Show Block Breaking Progress",
-  "enhanced_attack_indicator.tinyconfig.showRangeWeaponDraw": "Show Ranged Weapon Draw",
-  "enhanced_attack_indicator.tinyconfig.showItemCooldowns": "Show Item Cooldowns",
-  "enhanced_attack_indicator.tinyconfig.disablePickaxesAndShovels": "Disable Pickaxes' and Shovels' Weapon Cooldown",
-  "enhanced_attack_indicator.tinyconfig.disableAxes": "Disables Axes' Weapon Cooldown",
-  "enhanced_attack_indicator.tinyconfig.weaponCoolDownImportance": "Weapon Cooldown Priority",
-  "enhanced_attack_indicator.tinyconfig.enum.WeaponCoolDownImportance.FIRST": "First",
-  "enhanced_attack_indicator.tinyconfig.enum.WeaponCoolDownImportance.MIDDLE": "Middle",
-  "enhanced_attack_indicator.tinyconfig.enum.WeaponCoolDownImportance.LAST": "Last"
+  "enhanced_attack_indicator.midnightconfig.title": "Enhanced Attack Indicator",
+  "enhanced_attack_indicator.midnightconfig.showBlockBreaking": "Show Block Breaking Progress",
+  "enhanced_attack_indicator.midnightconfig.showRangeWeaponDraw": "Show Ranged Weapon Draw",
+  "enhanced_attack_indicator.midnightconfig.showItemCooldowns": "Show Item Cooldowns",
+  "enhanced_attack_indicator.midnightconfig.showFoodAndPotions": "Show Food & Potions",
+  "enhanced_attack_indicator.midnightconfig.disablePickaxesAndShovels": "Disable Pickaxe's & Shovel's Attack Cooldown",
+  "enhanced_attack_indicator.midnightconfig.disableAxes": "Disable Axe's Attack Cooldown",
+  "enhanced_attack_indicator.midnightconfig.weaponCoolDownImportance": "Attack Cooldown Priority",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.FIRST": "First",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.MIDDLE": "Middle",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.LAST": "Last"
 
 }

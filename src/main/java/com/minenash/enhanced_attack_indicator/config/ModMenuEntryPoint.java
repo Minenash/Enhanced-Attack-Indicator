@@ -7,7 +7,7 @@ public class ModMenuEntryPoint implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return Config::getModConfigScreen;
+        return parent -> Config.getScreen(parent,"enhanced_attack_indicator");
     }
 
 }

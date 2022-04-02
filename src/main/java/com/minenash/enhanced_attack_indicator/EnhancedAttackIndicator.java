@@ -46,7 +46,12 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 				float progress = (stack.getMaxUseTime() - player.getItemUseTimeLeft()) / 10.0F;
 				return progress >= 1.0F ? 2.0F : progress;
 			}
-			if (item.isFood()) {
+		}
+
+		if (Config.showFoodAndPotions) {
+			ItemStack stack = player.getActiveItem();
+			Item item = stack.getItem();
+			if (item.isFood() || item == Items.POTION) {
 				float itemCooldown = (float) player.getItemUseTime() / stack.getMaxUseTime();
 				return itemCooldown == 0.0F ? 1.0F : itemCooldown;
 			}

@@ -1,6 +1,6 @@
 package com.minenash.enhanced_attack_indicator.config;
 
-public class Config extends TinyConfig{
+public class Config extends MidnightConfig{
 
     public enum WeaponCoolDownImportance { FIRST, MIDDLE, LAST }
 
@@ -8,6 +8,7 @@ public class Config extends TinyConfig{
     @Entry public static boolean showBlockBreaking = true;
     @Entry public static boolean showRangeWeaponDraw = true;
     @Entry public static boolean showItemCooldowns = true;
+    @Entry public static boolean showFoodAndPotions = true;
 
     @Entry public static boolean disablePickaxesAndShovels = true;
     @Entry public static boolean disableAxes = true;
