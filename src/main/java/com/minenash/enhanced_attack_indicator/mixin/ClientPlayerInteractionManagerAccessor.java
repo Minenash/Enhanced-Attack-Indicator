@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(ClientPlayerInteractionManager.class)
 public interface ClientPlayerInteractionManagerAccessor {
 
-    @Accessor float getCurrentBreakingProgress();
+    @Accessor(value = "currentBreakingProgress")
+    float getCurrentBreakingProgress();
 
 }

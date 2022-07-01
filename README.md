@@ -1,6 +1,6 @@
 # Enhanced Attack Indicator
 
-Enhanced Attack Indicator is a **Fabric** mod for Minecraft 1.16.x that shows the attack indicator progress on more actions.
+Enhanced Attack Indicator is a **Fabric** mod for Minecraft 1.16.x-1.19.x that shows the attack indicator progress on more actions.
 
 Added Actions:
 * Breaking blocks
