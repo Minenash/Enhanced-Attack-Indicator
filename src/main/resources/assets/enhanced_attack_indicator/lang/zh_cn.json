@@ -1,0 +1,14 @@
+{
+  "enhanced_attack_indicator.midnightconfig.title": "Enhanced Attack Indicator",
+  "enhanced_attack_indicator.midnightconfig.showBlockBreaking": "显示破坏方块进度",
+  "enhanced_attack_indicator.midnightconfig.showRangeWeaponDraw": "显示远程武器的拉动",
+  "enhanced_attack_indicator.midnightconfig.showItemCooldowns": "显示物品冷却时间",
+  "enhanced_attack_indicator.midnightconfig.showFoodAndPotions": "显示食物和药水",
+  "enhanced_attack_indicator.midnightconfig.disablePickaxesAndShovels": "禁用镐子和锹的攻击冷却时间显示",
+  "enhanced_attack_indicator.midnightconfig.disableAxes": "禁用斧头的攻击冷却时间显示",
+  "enhanced_attack_indicator.midnightconfig.weaponCoolDownImportance": "攻击冷却时间优先级",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.FIRST": "最高",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.MIDDLE": "中等",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.LAST": "最后"
+
+}
