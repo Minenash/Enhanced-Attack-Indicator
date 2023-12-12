@@ -247,7 +247,7 @@ public abstract class MidnightConfig {
                 Objects.requireNonNull(client).setScreen(parent);
             }));
 
-            this.list = new MidnightConfigListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
+            this.list = new MidnightConfigListWidget(this.client, this.width, this.height - 64, 32, 25);
             if (this.client != null && this.client.world != null) this.list.setRenderBackground(false);
             this.addSelectableChild(this.list);
             for (EntryInfo info : entries) {
@@ -295,7 +295,7 @@ public abstract class MidnightConfig {
         }
         @Override
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-            this.renderBackground(context, mouseX, mouseY, delta);
+            super.render(context,mouseX,mouseY,delta);
             this.list.render(context, mouseX, mouseY, delta);
             context.drawCenteredTextWithShadow(textRenderer, title, width / 2, 15, 0xFFFFFF);
 
@@ -317,15 +317,14 @@ public abstract class MidnightConfig {
                     }
                 }
             }
-            super.render(context,mouseX,mouseY,delta);
         }
     }
     @Environment(EnvType.CLIENT)
     public static class MidnightConfigListWidget extends ElementListWidget<ButtonEntry> {
         TextRenderer textRenderer;
 
-        public MidnightConfigListWidget(MinecraftClient minecraftClient, int i, int j, int k, int l, int m) {
-            super(minecraftClient, i, j, k, l, m);
+        public MidnightConfigListWidget(MinecraftClient minecraftClient, int i, int j, int k, int m) {
+            super(minecraftClient, i, j, k, m);
             this.centerListVertically = false;
             textRenderer = minecraftClient.textRenderer;
         }
