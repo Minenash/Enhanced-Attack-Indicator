@@ -266,15 +266,6 @@ public abstract class MidnightConfig {
                         else widget.setText("");
                         Predicate<String> processor = ((BiFunction<TextFieldWidget, ButtonWidget, Predicate<String>>) info.widget).apply(widget, done);
                         widget.setTextPredicate(processor);
-                        ButtonWidget cycleButton = button(width - 185, 0, 20, 20, Text.literal(String.valueOf(info.index)).formatted(Formatting.GOLD), (button -> {
-                            ((List<String>)info.value).remove("");
-                            double scrollAmount = list.getScrollAmount();
-                            this.reload = true;
-                            info.index = info.index + 1;
-                            if (info.index > ((List<String>)info.value).size()) info.index = 0;
-                            Objects.requireNonNull(client).setScreen(this);
-                            list.setScrollAmount(scrollAmount);
-                        }));
                     } else if (info.widget != null) {
                         TextFieldWidget widget = new TextFieldWidget(textRenderer, width - 160, 0, 150, 20, null);
                         widget.setMaxLength(info.width);
