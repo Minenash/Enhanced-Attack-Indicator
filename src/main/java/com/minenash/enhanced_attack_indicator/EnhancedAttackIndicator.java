@@ -92,11 +92,11 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		if (Config.showItemCooldowns) {
-			float cooldown = player.getItemCooldownManager().getCooldownProgress(offHand.getItem(), 0);
+			float cooldown = player.getItemCooldownManager().getCooldownProgress(offHand, 0);
 			if (cooldown != 0.0F)
 				return cooldown;
 
-			cooldown = player.getItemCooldownManager().getCooldownProgress(mainHand.getItem(), 0);
+			cooldown = player.getItemCooldownManager().getCooldownProgress(mainHand, 0);
 			if (cooldown != 0.0F)
 				return cooldown;
 		}

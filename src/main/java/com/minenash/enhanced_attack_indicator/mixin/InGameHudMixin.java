@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
@@ -43,15 +44,9 @@ public class InGameHudMixin {
 	@Inject(method = "renderCrosshair", at = @At(value = "TAIL"))
 	private void showPlus(DrawContext context, RenderTickCounter tickDelta, CallbackInfo info) {
 		if (renderFullness) {
-			RenderSystem.enableBlend();
-			RenderSystem.blendFuncSeparate(
-					GlStateManager.SrcFactor.ONE_MINUS_DST_COLOR, GlStateManager.DstFactor.ONE_MINUS_SRC_COLOR, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO
-			);
 			int j = context.getScaledWindowHeight() / 2 - 7 + 16;
 			int k = context.getScaledWindowWidth() / 2 - 8;
-			context.drawGuiTexture(CROSSHAIR_ATTACK_INDICATOR_FULL_TEXTURE, k, j, 16, 16);
-			RenderSystem.defaultBlendFunc();
-			RenderSystem.disableBlend();
+			context.drawGuiTexture(RenderLayer::getCrosshair, CROSSHAIR_ATTACK_INDICATOR_FULL_TEXTURE, k, j, 16, 16);
 			renderFullness = false;
 		}
 	}
