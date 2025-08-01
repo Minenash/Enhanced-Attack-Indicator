@@ -1,0 +1,15 @@
+{
+  "enhanced_attack_indicator.midnightconfig.title": "Enhanced Attack Indicator",
+  "enhanced_attack_indicator.midnightconfig.showBlockBreaking": "Mostrar progreso de rotura de bloques",
+  "enhanced_attack_indicator.midnightconfig.showRangeWeaponDraw": "Mostrar progreso de tensado de arma a distancia",
+  "enhanced_attack_indicator.midnightconfig.showItemCooldowns": "Mostrar enfriamiento de objetos",
+  "enhanced_attack_indicator.midnightconfig.showFoodAndPotions": "Mostrar alimentos y pociones",
+  "enhanced_attack_indicator.midnightconfig.disablePickaxesAndShovels": "Deshabilitar el enfriamiento de ataque de picos y palas",
+  "enhanced_attack_indicator.midnightconfig.disableAxes": "Deshabilitar el enfriamiento de ataque de hachas",
+  "enhanced_attack_indicator.midnightconfig.weaponCoolDownImportance": "Prioridad de enfriamiento de ataque",
+  "enhanced_attack_indicator.midnightconfig.showSleep": "Mostrar progreso de sueño",
+  "enhanced_attack_indicator.midnightconfig.showItemContainerFullness": "Mostrar capacidad de shulker",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.FIRST": "Primero",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.MIDDLE": "Medio",
+  "enhanced_attack_indicator.midnightconfig.enum.WeaponCoolDownImportance.LAST": "Último"
+}
