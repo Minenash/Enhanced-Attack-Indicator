@@ -1,6 +1,7 @@
 package com.minenash.enhanced_attack_indicator.mixin;
 
 import com.minenash.enhanced_attack_indicator.EnhancedAttackIndicator;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -43,7 +44,7 @@ public class InGameHudMixin {
 		if (renderFullness) {
 			int j = context.getScaledWindowHeight() / 2 - 7 + 16;
 			int k = context.getScaledWindowWidth() / 2 - 8;
-			context.drawGuiTexture(RenderLayer::getCrosshair, CROSSHAIR_ATTACK_INDICATOR_FULL_TEXTURE, k, j, 16, 16);
+			context.drawGuiTexture(RenderPipelines.CROSSHAIR, CROSSHAIR_ATTACK_INDICATOR_FULL_TEXTURE, k, j, 16, 16);
 			renderFullness = false;
 		}
 	}
