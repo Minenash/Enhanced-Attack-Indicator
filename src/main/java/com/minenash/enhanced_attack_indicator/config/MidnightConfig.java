@@ -13,11 +13,8 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.*;
 import net.minecraft.screen.ScreenTexts;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.gui.widget.ElementListWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -231,6 +228,8 @@ public abstract class MidnightConfig {
             super.init();
             if (!reload) loadValues();
 
+            int titleWidth = textRenderer.getWidth(title);
+            this.addDrawableChild( new TextWidget(width / 2 - titleWidth / 2, 12, titleWidth, 9, title, textRenderer));
             this.addDrawableChild( button(this.width / 2 - 154, this.height - 28, 150, 20, ScreenTexts.CANCEL, button -> {
                 loadValues();
                 Objects.requireNonNull(client).setScreen(parent);
@@ -288,7 +287,7 @@ public abstract class MidnightConfig {
         public void render(DrawContext context, int mouseX, int mouseY, float delta) {
             super.render(context,mouseX,mouseY,delta);
             this.list.render(context, mouseX, mouseY, delta);
-            context.drawCenteredTextWithShadow(textRenderer, title, width / 2, 15, 0xFFFFFF);
+//            context.drawCenteredTextWithShadow(textRenderer, title, , 0xFFFFFF);
 
             for (EntryInfo info : entries) {
                 if (info.id.equals(modid)) {
@@ -340,23 +339,24 @@ public abstract class MidnightConfig {
     public static class ButtonEntry extends ElementListWidget.Entry<ButtonEntry> {
         private static final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
         public final List<ClickableWidget> buttons;
-        private final Text text;
+        private final TextWidget text;
         private final List<ClickableWidget> children = new ArrayList<>();
         public static final Map<ClickableWidget, Text> buttonsWithText = new HashMap<>();
 
         private ButtonEntry(List<ClickableWidget> buttons, Text text) {
             if (!buttons.isEmpty()) buttonsWithText.put(buttons.get(0),text);
             this.buttons = buttons;
-            this.text = text;
+            this.text = new TextWidget(12, 0, textRenderer.getWidth(text), 9, text, textRenderer);
+
             children.addAll(buttons);
         }
         public static ButtonEntry create(List<ClickableWidget> buttons, Text text) {
             return new ButtonEntry(buttons, text);
         }
         public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            text.setY(y + 5);
+            text.render(context, mouseX, mouseY, tickDelta);
             buttons.forEach(b -> { b.setY(y); b.render(context, mouseX, mouseY, tickDelta); });
-            if (text != null && (!text.getString().contains("spacer") || !buttons.isEmpty()))
-                context.drawTextWithShadow(textRenderer, text,12,y+5,0xFFFFFF);
         }
         public List<? extends Element> children() {return children;}
         public List<? extends Selectable> selectableChildren() {return children;}
