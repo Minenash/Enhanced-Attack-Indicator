@@ -6,7 +6,7 @@ public class Config extends MidnightConfig{
 
     @Entry public static WeaponCoolDownImportance weaponCoolDownImportance = WeaponCoolDownImportance.MIDDLE;
     @Entry public static boolean disablePickaxesAndShovels = true;
-    @Entry public static boolean disableAxes = true;
+    @Entry public static boolean disableAxes = false;
 
     @Entry public static boolean showBlockBreaking = true;
     @Entry public static boolean showRangeWeaponDraw = true;
