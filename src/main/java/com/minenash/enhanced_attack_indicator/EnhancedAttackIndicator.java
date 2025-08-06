@@ -5,11 +5,14 @@ import com.minenash.enhanced_attack_indicator.config.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
 
 import java.util.List;
 
 public class EnhancedAttackIndicator implements ClientModInitializer {
+
+	private static final MinecraftClient client = MinecraftClient.getInstance();
 
 	@Override
 	public void onInitializeClient() {
@@ -18,11 +21,12 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 
 	public static float getProgress(float weaponProgress) {
 
-		ClientPlayerEntity player = MinecraftClient.getInstance().player;
+		ClientPlayerEntity player = client.player;
 		ItemStack mainHand = player.getMainHandStack();
 		ItemStack offHand = player.getOffHandStack();
+		boolean weaponShouldShow = weaponProgress < 1 || client.targetedEntity instanceof LivingEntity le && le.isAlive() && player.getAttackCooldownProgressPerTick() > 5;
 
-		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.FIRST && weaponProgress < 1.0F)
+		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.FIRST && weaponShouldShow)
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		if (Config.showSleep) {
@@ -88,7 +92,7 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			}
 		}
 
-		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.MIDDLE && weaponProgress < 1.0F)
+		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.MIDDLE && weaponShouldShow)
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		if (Config.showItemCooldowns) {
@@ -105,7 +109,7 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 		                                 || offHand.getItem() == Items.CROSSBOW && CrossbowItem.isCharged(mainHand)))
 			return 2.0F;
 
-		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.LAST)
+		if (Config.weaponCoolDownImportance == Config.WeaponCoolDownImportance.LAST && weaponShouldShow)
 			return weaponCooldown(mainHand.getItem(), weaponProgress);
 
 		return 1.0F;
@@ -117,7 +121,7 @@ public class EnhancedAttackIndicator implements ClientModInitializer {
 			return 1.0F;
 		if (Config.disableAxes && item.getTranslationKey().contains("axe") && !item.getTranslationKey().contains("pickaxe"))
 			return 1.0F;
-		return weaponProgress;
+		return weaponProgress == 1 ? 2 : weaponProgress;
 
 	}
 
